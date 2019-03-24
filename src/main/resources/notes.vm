@@ -1,0 +1,35 @@
+<h1>Заметки</h1>
+
+<table>
+#foreach($note in $data)
+        <tr>
+            <td>
+                <b>$note.head</b><br>
+                $note.text
+            </td>
+            <td>
+                <a href="/notes/remove/$velocityCount">[x]</a>
+            </td>
+        </tr>
+#end
+</table>
+#if ($error)
+<br>
+<font color="red">$error</font>
+#end
+<br>
+<footer>
+    <form method="POST" action="/notes">Добавление:
+        <input type="text" name="header" placeholder="Заголовок"></input>
+        <input type="text" name="text" placeholder="Текст заметки"></input>
+        <input value="+" type="submit"></input>
+    </form>
+    <br>
+    <form method="GET" action="/notes/search/">Поиск:
+        <input type="text" name="term" placeholder="Текст" value=""></input>
+        <button type="submit">Найти</button>
+        <button onclick="window.location='/notes';" type="button">Сбросить</button>
+    </form>
+    <form method="GET" name="reset" action="/notes">
+    </form>
+</footer>
